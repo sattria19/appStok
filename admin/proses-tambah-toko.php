@@ -16,8 +16,8 @@ if (mysqli_num_rows($cek) > 0) {
 }
 
 // Simpan ke database
-$query = "INSERT INTO toko (nama_toko, lokasi_maps, alamat_manual) 
-          VALUES ('$nama_toko', '$lokasi_maps', '$alamat_manual')";
+$query = "INSERT INTO toko (nama_toko, lokasi_maps, alamat_manual, dibuat_oleh) 
+          VALUES ('$nama_toko', '$lokasi_maps', '$alamat_manual', '$username')";
 mysqli_query($conn, $query);
 
 // Log aktivitas
@@ -27,4 +27,3 @@ mysqli_query($conn, "INSERT INTO log_aktivitas (username, aksi, tabel, waktu)
                      VALUES ('$username', '$aksi', '$tabel', '$waktu')");
 
 echo "<script>alert('Toko berhasil ditambahkan!'); window.location.href='daftar-toko.php';</script>";
-?>

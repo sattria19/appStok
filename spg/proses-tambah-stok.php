@@ -42,6 +42,7 @@ if (!empty($errors)) {
 }
 
 // Jika lolos validasi, lanjut proses simpan
+$items_added = []; // Array untuk menyimpan item yang ditambahkan
 foreach ($id_barang as $key => $barang_id) {
     $jumlah_tambah = (int)$tambah[$key];
     $ket = mysqli_real_escape_string($conn, $keterangan[$key]);
@@ -83,10 +84,25 @@ foreach ($id_barang as $key => $barang_id) {
         mysqli_query($conn, "INSERT INTO laporan_stok 
                              (tanggal, nama_barang, stok_awal, masuk, keluar, stok_akhir, lokasi, dibuat_oleh, dibuat_pada, keterangan)
                              VALUES ('$tanggal', '$nama_barang', $stok_awal, $jumlah_tambah, 0, $stok_akhir, '$nama_toko', '$username', '$tanggal', '$ket')");
+
+        // Simpan item yang ditambahkan untuk print
+        $items_added[] = [
+            'nama_barang' => $nama_barang,
+            'jumlah' => $jumlah_tambah,
+            'keterangan' => $ket,
+            'harga' => 13000
+        ];
     }
 }
 
-// Redirect jika sukses
-header("Location: dashboard-spg.php");
+// Simpan data untuk print dalam session
+$_SESSION['print_data'] = [
+    'toko' => $nama_toko,
+    'tanggal' => $tanggal,
+    'items' => $items_added,
+    'username' => $username
+];
+
+// Redirect ke halaman print
+header("Location: print-tambah-stok.php");
 exit;
-?>

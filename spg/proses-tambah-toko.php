@@ -11,19 +11,19 @@ $waktu = date('Y-m-d H:i:s');
 // Cek duplikat nama toko
 $cek = mysqli_query($conn, "SELECT * FROM toko WHERE nama_toko = '$nama_toko'");
 if (mysqli_num_rows($cek) > 0) {
-    header("Location: dashboard-spg.php?error=duplicate");
+    header("Location: tambah-toko.php?error=duplicate");
     exit;
 }
 
 if (empty($lokasi_maps)) {
-    header("Location: dashboard-spg.php?error=lokasi_kosong");
+    header("Location: tambah-toko.php?error=lokasi_kosong");
     exit;
 }
 
 
 // Simpan ke database
-$query = "INSERT INTO toko (nama_toko, lokasi_maps, alamat_manual) 
-          VALUES ('$nama_toko', '$lokasi_maps', '$alamat_manual')";
+$query = "INSERT INTO toko (nama_toko, lokasi_maps, alamat_manual, dibuat_oleh) 
+          VALUES ('$nama_toko', '$lokasi_maps', '$alamat_manual', '$username')";
 mysqli_query($conn, $query);
 
 // Ambil ID toko yang baru saja ditambahkan
@@ -38,4 +38,3 @@ mysqli_query($conn, "INSERT INTO log_aktivitas (username, aksi, tabel, waktu)
 // Redirect ke form tambah stok toko baru
 header("Location: tambah-stok-toko.php?id_toko=$id_toko");
 exit;
-?>

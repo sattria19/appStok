@@ -1,10 +1,10 @@
-<?php 
+<?php
 include 'header.php';
 include '../koneksi.php';
 
 if (!isset($_GET['id'])) {
-    echo "<script>alert('ID tidak ditemukan.'); window.location.href='stok-gudang.php';</script>";
-    exit;
+  echo "<script>alert('ID tidak ditemukan.'); window.location.href='stok-gudang.php';</script>";
+  exit;
 }
 
 $id = $_GET['id'];
@@ -12,8 +12,8 @@ $query = mysqli_query($conn, "SELECT * FROM stok_gudang WHERE id='$id'");
 $data = mysqli_fetch_assoc($query);
 
 if (!$data) {
-    echo "<script>alert('Data tidak ditemukan.'); window.location.href='stok-gudang.php';</script>";
-    exit;
+  echo "<script>alert('Data tidak ditemukan.'); window.location.href='stok-gudang.php';</script>";
+  exit;
 }
 ?>
 
@@ -56,6 +56,7 @@ if (!$data) {
   </div>
 </form>
 
-</div> <!-- .content -->
+</div>
 </body>
+
 </html>

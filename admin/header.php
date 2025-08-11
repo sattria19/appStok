@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
-    header("Location: ../index.php");
-    exit();
+  header("Location: ../index.php");
+  exit();
 }
 
 $current_page = basename($_SERVER['PHP_SELF']);
@@ -10,22 +10,26 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: sans-serif;
       display: flex;
+      min-height: 100vh;
     }
 
     .sidebar {
       width: 230px;
       background-color: #111;
       color: white;
-      height: 100vh;
+      min-height: 100vh;
       padding: 20px;
       box-sizing: border-box;
       overflow-y: auto;
@@ -91,7 +95,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
       min-width: 900px;
     }
 
-    table th, table td {
+    table th,
+    table td {
       border: 1px solid #000;
       padding: 8px 12px;
       text-align: left;
@@ -126,30 +131,34 @@ $current_page = basename($_SERVER['PHP_SELF']);
     }
   </style>
 </head>
+
 <body>
 
-<button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
+  <button class="toggle-btn" onclick="toggleSidebar()">☰ Menu</button>
 
-<div class="sidebar" id="sidebar">
-  <h2>Admin Panel</h2>
-  <a href="dashboard-admin.php" class="<?= $current_page == 'dashboard-admin.php' ? 'active' : '' ?>">🏠 Dashboard</a>
-  <a href="stok-gudang.php" class="<?= $current_page == 'stok-gudang.php' ? 'active' : '' ?>">📦 Stok Gudang</a>
-  <a href="stok-toko.php" class="<?= $current_page == 'stok-toko.php' ? 'active' : '' ?>">🏪 Stok Toko</a>
-  <a href="daftar-toko.php" class="<?= $current_page == 'daftar-toko.php' ? 'active' : '' ?>">📋 Daftar Toko</a>
-  <a href="laporan.php" class="<?= $current_page == 'laporan.php' ? 'active' : '' ?>">📊 Laporan</a>
-  <a href="manajemen-user.php" class="<?= $current_page == 'manajemen-user.php' ? 'active' : '' ?>">👤 Manajemen User</a>
-  <a href="log-aktivitas.php" class="<?= $current_page == 'log-aktivitas.php' ? 'active' : '' ?>">📝 Log Aktivitas</a>
-  <a href="cetak-barcode-batch.php" class="<?= $current_page == 'cetak-barcode-batch.php' ? 'active' : '' ?>">Daftar Barcode</a>
-  <a href="generate-barcode-produk.php" class="<?= $current_page == 'generate-barcode-produk.php' ? 'active' : '' ?>">Generate Barcode Produk</a>
+  <div class="sidebar" id="sidebar">
+    <h2>Admin Panel</h2>
+    <a href="dashboard-admin.php" class="<?= $current_page == 'dashboard-admin.php' ? 'active' : '' ?>">🏠 Dashboard</a>
+    <a href="stok-gudang.php" class="<?= $current_page == 'stok-gudang.php' ? 'active' : '' ?>">📦 Stok Gudang</a>
+    <a href="stok-toko.php" class="<?= $current_page == 'stok-toko.php' ? 'active' : '' ?>">🏪 Stok Toko</a>
+    <a href="daftar-toko.php" class="<?= $current_page == 'daftar-toko.php' ? 'active' : '' ?>">📋 Daftar Toko</a>
+    <a href="daftar-produk.php" class="<?= $current_page == 'daftar-produk.php' ? 'active' : '' ?>">📦 Daftar Produk</a>
+    <a href="laporan.php" class="<?= $current_page == 'laporan.php' ? 'active' : '' ?>">📊 Laporan</a>
+    <a href="manajemen-user.php" class="<?= $current_page == 'manajemen-user.php' ? 'active' : '' ?>">👤 Manajemen User</a>
+    <a href="log-aktivitas.php" class="<?= $current_page == 'log-aktivitas.php' ? 'active' : '' ?>">📝 Log Aktivitas</a>
+    <a href="cetak-barcode-batch.php" class="<?= $current_page == 'cetak-barcode-batch.php' ? 'active' : '' ?>">Daftar Barcode Produk</a>
+    <a href="generate-barcode-produk.php" class="<?= $current_page == 'generate-barcode-produk.php' ? 'active' : '' ?>">Generate Barcode Produk</a>
 
-  <a href="logout-admin.php">📕 Logout</a>
-</div>
+    <a href="logout-admin.php">📕 Logout</a>
+  </div>
 
-<div class="content">
+  <div class="content">
 
-<script>
-function toggleSidebar() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("show");
-}
-</script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("show");
+      }
+    </script>

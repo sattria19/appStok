@@ -3,6 +3,7 @@ include 'header.php';
 include '../koneksi.php';
 
 require '../vendor/autoload.php';
+
 use Ramsey\Uuid\Uuid;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         mysqli_query($conn, "INSERT INTO barcode_produk 
             (id_gudang, nama_barang, kode_barcode, status, updated_at) 
-            VALUES ('$id_gudang', '$nama_barang', '$kode_unik', 'di_gudang', NOW())");
+            VALUES ('$id_gudang', '$nama_barang', '$kode_unik', '', NOW())");
 
         $id_tergenerate[] = mysqli_insert_id($conn);
     }
